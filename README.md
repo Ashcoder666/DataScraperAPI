@@ -1,4 +1,4 @@
-DataScaper API
+# DataScaper API
 
 A Python project demonstrating web scraping and API integration with multiple free datasets and APIs. This project helps you practice extracting data from websites, consuming APIs, and processing real-world data for analysis or application purposes.
 
@@ -51,23 +51,6 @@ OpenWeatherMap API
 NewsAPI
 
 All other APIs are free to use without authentication.
-
-📂 Project Structure
-project-2-web-scraping-api/
-│
-├─ web_scraping/
-│   ├─ news_scraper.py       # Scrapes news headlines
-│   ├─ books_scraper.py      # Scrapes book info
-│   └─ quotes_scraper.py     # Scrapes quotes
-│
-├─ api_integration/
-│   ├─ weather_api.py        # Fetch weather by city
-│   ├─ news_api.py           # Fetch news headlines
-│   ├─ crypto_api.py         # Fetch crypto prices
-│   └─ anime_api.py          # Fetch Anime/Manga info
-│
-├─ requirements.txt          # Python dependencies
-└─ README.md
 
 📖 Usage
 1. Clone the Repository
