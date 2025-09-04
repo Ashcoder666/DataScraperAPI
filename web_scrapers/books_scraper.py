@@ -9,12 +9,17 @@ base_url = "http://books.toscrape.com/"
 
 
 def bookScraper():
+    counterr = 1
     url=base_url
     allBooks = []
     current_percentage = 2
 
     while url:
-        response = requests.get(url,timeout=15)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/114.0.0.0 Safari/537.36"}
+        response = requests.get(url,headers=headers,timeout=15)
         soup = BeautifulSoup(response.text, "html.parser")
         books = soup.find_all("article")
 
@@ -25,9 +30,10 @@ def bookScraper():
         
     
         next_button = soup.find("li",class_="next")
-        if next_button:
+        if next_button and counterr < 5:
             next_page = next_button.a["href"]
             url = urljoin(url, next_page)
+            counterr += + 1
         else:
             url=None
         
@@ -37,8 +43,13 @@ def bookScraper():
 
     df = pd.DataFrame(allBooks)
 
-    df["price"] = df["price"].str.replace("£", "").astype(float)
+    df["price"] = (
+        df["price"]
+        .str.replace("£", "", regex=False)  
+        .str.replace("Â", "", regex=False)  
+        .astype(float)
+    )
 
-    df.to_csv("books.csv",index=False)
+    df.to_csv("outputs/books.csv",index=False)
     
     
